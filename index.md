@@ -20,7 +20,7 @@ Check out [my project showcase](projects.html) for more.
 
 ## Recent Posts
 
-{% for post in site.posts limit: 3 %}
+{% for post in site._posts limit: 3 %}
 - [{{ post.title }}]({{ post.url }}) — {{ post.date | date: "%b %-d, %Y" }}
 {% endfor %}
 
