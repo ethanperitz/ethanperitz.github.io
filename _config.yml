@@ -1,0 +1,24 @@
+title: Ethan Peritz
+email: ethan.peritz@gmail.com
+description: >- 
+  Portfolio, blog, and lesson library.
+baseurl: ""
+url: "https://ethanperitz.com"
+theme: minima
+plugins:
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+  - scope:
+      path: "projects"
+    values:
+      layout: page
+  - scope:
+      path: "lessons"
+    values:
+      layout: page
