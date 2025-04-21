@@ -1,0 +1,10 @@
+---
+layout: post
+title: "Data Science for Everyone"
+---
+
+I believe firmly that Data Science is for everyone, and I hope to bring rigorous Data Science instruction to high schools across the US.
+
+Visit this website for project ideas, curricula, and musings on the state of math, computer science, statistics, and data science in public education.  
+
+Feel free to reach out to me at ethan.peritz@gmail.com for requests, inquiries, or comments. 
