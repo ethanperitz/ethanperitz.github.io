@@ -7,6 +7,12 @@ url: "https://ethanperitz.com"
 theme: minima
 plugins:
   - jekyll-feed
+header_pages:
+  - index.md
+  - projects.md
+  - blog.md
+  - lessons.md
+  - cv.md
 
 defaults:
   - scope:
