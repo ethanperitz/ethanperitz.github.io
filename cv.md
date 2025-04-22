@@ -12,7 +12,7 @@ permalink: /cv/
 ---
 
 <p align="center">
-  <img src="/assets/img/ethan.jpg" alt="Ethan Peritz headshot" width="200" style="border-radius: 100px;" />
+  <img src="/assets/img/peritz-headshot.jpg" alt="Ethan Peritz headshot" width="200" style="border-radius: 100px;" />
 </p>
 
 ## Summary
