@@ -10,14 +10,21 @@ permalink: /cv/
 📞 (203) 247-8110  
 
 ---
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
 
-<p align="center">
-  <img src="/assets/img/peritz-headshot.jpg" alt="Ethan Peritz headshot" width="200" style="border-radius: 100px;" />
-</p>
-
-## Summary
+<div style="flex: 1 1 60%; min-width: 250px;">
+  
+### Summary
 
 Passionate about education, data science, and helping others. I am looking for opportunities to be creative and inspiring. I value finding joy in doing important work.
+
+</div>
+
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/peritz-headshot.jpg" alt="Ethan Peritz headshot" width="180" style="border-radius: 100px;" />
+</div>
+
+</div>
 
 ---
 
