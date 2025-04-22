@@ -48,6 +48,15 @@ My algorithm for this problem included the following steps:
 
 ## Algorithm Implementation
 
+### Imports
+
+```python
+import random
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+import numpy as np
+```
+
 ### Functions
 
 #### 1.  Initialize the algorithm with randomly selected groups of items
