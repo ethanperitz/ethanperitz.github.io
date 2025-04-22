@@ -21,7 +21,7 @@ Passionate about education, data science, and helping others. I am looking for o
 
 </div>
 
-<div style="flex: 0 0 auto;">
+<div style="flex: 0 0 auto; padding-top: 20px; padding-bottom: 20px;">
   <img src="/assets/img/peritz-headshot.jpg" alt="Ethan Peritz's headshot" width="180" style="border-radius: 100px;" />
 </div>
 
