@@ -22,3 +22,7 @@ defaults:
       path: "lessons"
     values:
       layout: page
+  - scope:
+      path: "cv"
+    values:
+      layout: page
