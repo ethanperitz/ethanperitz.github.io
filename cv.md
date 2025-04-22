@@ -11,6 +11,10 @@ permalink: /cv/
 
 ---
 
+<p align="center">
+  <img src="/assets/img/ethan.jpg" alt="Ethan Peritz headshot" width="200" style="border-radius: 100px;" />
+</p>
+
 ## Summary
 
 Passionate about education, data science, and helping others. I am looking for opportunities to be creative and inspiring. I value finding joy in doing important work.
