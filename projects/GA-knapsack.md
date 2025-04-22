@@ -410,8 +410,10 @@ def fitnessScoreGrapher(average_fitness_scores, max_fitness_scores):
 ```
 
 ## Results
-
+<p align="center">
 <div style="flex: 0 0 auto; padding-top: 10px; padding-bottom: 10px;">
-  <img src="/assets/img/GA-knapsack-convergence-plot.png" alt="GA Knapsack Convergence Plot" width="180" style="border-radius: 100px;" />
+  <img src="/assets/img/GA-knapsack-convergence-plot.png" alt="GA Knapsack Convergence Plot" width="300" style="border-radius: 180px;" />
 </div>
-path - 
+</p>
+
+
