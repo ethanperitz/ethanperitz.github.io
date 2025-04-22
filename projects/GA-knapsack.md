@@ -421,3 +421,5 @@ The convergence plot shows a couple of nice behaviors of this algorithm.
 First, the algorithm **continually improves** throughout the generations.  This is largely thanks to the greedy removal of items from overweight knapsacks and the preservation of "elite" (i.e. best-value) knapsacks from one generation to the next. 
 
 Second, the average values (shown in black) show a fair amount of noise as the generations progress.  This indicates that enough randomness is preserved by the algorithm so that it doesn't converge prematurely.  
+
+The question is - How do we know that we are converging towards an optimal/near-optimal solution, and not some much worse solution? We can compare the performance of this algorithm to a deterministic one.  For example, greedy algorithms tend to do quite well with the 0-1 Knapsack problems because of the simplistic metrics that can be used to sort the population (in this case, value/weight ratio).  The genetic algorithm implementation above performed about 5% worse than the greedy algorithm.  So, the genetic algorithm (which would outperform greedy in time and space complexity) performs adequately.   
