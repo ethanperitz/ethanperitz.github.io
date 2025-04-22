@@ -94,7 +94,7 @@ def getInitialChromosomes(sample_size, pop_size, inclusion_rates):
     chromosomes.append(included_items)
   return chromosomes
 
-  def pack(pop, chromosomes_list):
+def pack(pop, chromosomes_list):
   '''
   Uses the chromosome lists to "pack" a knapsack - taking the indexed
   items from the population
@@ -142,5 +142,148 @@ def repair_overweight(knapsack, max_capacity):
     sorted_knapsack.pop(0)
   return sorted_knapsack
 ```
+### 3.  Use the scores to create a probability model.
+
+```python
+def decision_boundaries(all_fitness_scores):
+  '''
+  Accumulates fitness scores additively into list, creating boundaries for parent
+  selection
+  '''
+  boundaries = [0]
+  for index, (knapsack, fitness_score) in enumerate(all_fitness_scores):
+    boundaries.append(boundaries[index] + fitness_score)
+  return boundaries
+
+```
+
+### 4.  Use the probability model to randomly select (with replacement) from the current group of knapsacks.
+
+```python
+def generateFitterParents(boundaries, knapsacks):
+    '''
+    We need a group of parents that are as fit as possible while preserving
+    some random chance, diversity, etc. in the algorithm.  So, this uses
+    the decision boundaries made before to probabilistically choose a sample
+    of knapsacks.  More fit (i.e. higher value) knapsacks are more likely (but not guaranteed) 
+    to be chosen.  Knapsacks with fitness scores of 0 cannot be chosen.
+    '''
+    fitter_knapsacks = []
+    while len(fitter_knapsacks) < len(knapsacks):
+      random_number = random.uniform(0, max(boundaries))
+      for index, boundary in enumerate(boundaries[1:]):
+        if random_number < boundary:
+          fitter_knapsacks.append(knapsacks[index])
+          break
+    return fitter_knapsacks
+```
+### 5.  Pair original knapsacks and fitter knapsacks together for breeding.
+
+```python
+parents = zip(knapsacks, fitter_knapsacks)
+```
+### 6.  Use a crossover model to combine items from each parent pair.
+
+```python
+def crossover(knapsack, fitter_knapsack, max_capacity, bias):
+  '''
+  This algorithm will take each knapsack and pair it with its corresponding
+  "fitter" knapsack.  
+
+  First, we randomly select a percentage of the items in the original knapsack.
+  These are the first items placed into the child knapsack.
+  
+  This includes a bias hyperparameter that can be tuned - the percentage
+  of the original knapsack to take.  Including 50% or more of the original
+  may preserve more diversity, but including less than 50% of the original
+  may push evolution more quickly towards convergence. 
+
+  Then, we work element-wise through the fitter knapsack, adding elements to the child
+  only if they are not already in the child.
+
+  There are cases where the child knapsack could be overweight.  In this case,
+  we recursively call the crossover function to retry the algorithm with a harsher
+  bias towards the first parent.  
+  '''
+  num_to_sample = int(len(knapsack) * bias)
+  selected_indices = random.sample(range(len(knapsack)), k = num_to_sample)
+  child = []
+  for index in selected_indices:
+    child.append(knapsack[index])
+  child_weight = weight(child)
+  shuffled_fitter_knapsack = fitter_knapsack[:]
+  random.shuffle(shuffled_fitter_knapsack)
+  for item in shuffled_fitter_knapsack:
+    if item not in child and item[0] + child_weight <= max_capacity:
+      child.append(item)
+      child_weight += item[0]
+  if weight(child) > max_capacity:
+    bias = bias/2
+    return crossover(knapsack, fitter_knapsack, max_capacity, bias)
+  else:
+    return child
+```
+### Use a mutation model for the new set of "children" knapsacks.
+
+```python
+def swapOne(child, pop):
+  '''
+  Helper function to be used with mutate. Swaps a random item from the population
+  into a child knapsack.
+  '''
+
+  if len(child) == 0:
+    return child #no swap
+  while True:
+    swap_in = random.choice(pop)
+    if swap_in not in child:
+      break
+  index_to_replace = random.randint(0, len(child)-1)
+  child[index_to_replace] = swap_in
+  return child
+
+def mutate(children, pop, rate):
+  '''
+  To preserve diversity in each generation, we want to occasionally mutate.
+  This function will replace 0, 1, 2, or 3 items in the knapsack with a
+  random item from the population that isn't already in the knapsack.
+  To pick the number of items to be replaced, we use a geometric probability
+  model:
+  P(1 item is replaced) = rate
+  P(3 items are replaced) = rate squared
+  P(10 items are replaced) = rate cubed
+  '''
+  mutated_children = []
+  for child in children:
+    trigger = random.random()
+    if trigger < rate**3:
+      for _ in range(10):
+        child = swapOne(child, pop)
+    elif trigger < rate**2:
+      for _ in range(3):
+        child = swapOne(child, pop)
+    elif trigger < rate:
+      child = swapOne(child, pop)
+    mutated_children.append(child)
+  return mutated_children
+
+```
+
+### 8.  Search through the children knapsacks for the current best solutions.
+
+```python
+def preserve_elites(all_fitness_scores, mutated_children, num_of_elites):
+  '''
+  For each generation, we make sure that the two (or more) best knapsacks are
+  preserved.
+  '''
+  elites = sorted(all_fitness_scores, key = lambda x: x[1], reverse = True)[:num_of_elites]
+  elite_knapsacks = [e[0] for e in elites]
+  mutated_children = sorted(mutated_children, key = lambda x: x[1], reverse = False)
+  return elite_knapsacks + mutated_children[num_of_elites:]
+
+```
+
+
 
 
