@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Genetic Algorithm – Knapsack Problem
 permalink: /projects/genetic-algorithm-knapsack/
 ---
