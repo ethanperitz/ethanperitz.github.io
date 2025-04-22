@@ -12,7 +12,7 @@ I’m a data scientist and educator. This site is a place for me to share:
 
 ---
 
-## Featured Projects
+## Featured Personal Projects
 
 Check out [my project showcase](projects.html) for more.
 
