@@ -32,3 +32,6 @@ defaults:
       path: "cv"
     values:
       layout: page
+
+includes:
+  - _includes
