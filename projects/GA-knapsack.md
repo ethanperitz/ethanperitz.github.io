@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Genetic Algorithm – Knapsack Problem
 permalink: /projects/genetic-algorithm-knapsack/
 ---
@@ -416,4 +416,8 @@ def fitnessScoreGrapher(average_fitness_scores, max_fitness_scores):
 </div>
 </p>
 
+The convergence plot shows a couple of nice behaviors of this algorithm.  
 
+First, the algorithm **continually improves** throughout the generations.  This is largely thanks to the greedy removal of items from overweight knapsacks and the preservation of "elite" (i.e. best-value) knapsacks from one generation to the next. 
+
+Second, the average values (shown in black) show a fair amount of noise as the generations progress.  This indicates that enough randomness is preserved by the algorithm so that it doesn't converge prematurely.  
