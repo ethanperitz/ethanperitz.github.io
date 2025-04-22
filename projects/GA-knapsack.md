@@ -48,7 +48,9 @@ My algorithm for this problem included the following steps:
 
 ## Algorithm Implementation
 
-### 1.  Initialize the algorithm with randomly selected groups of items
+### Functions
+
+#### 1.  Initialize the algorithm with randomly selected groups of items
 
 ```python
 
@@ -106,7 +108,7 @@ def pack(pop, chromosomes_list):
   return knapsacks
 ```
 
-### 2.  Score each knapsack solution.
+#### 2.  Score each knapsack solution.
 
 
 ```python
@@ -142,7 +144,7 @@ def repair_overweight(knapsack, max_capacity):
     sorted_knapsack.pop(0)
   return sorted_knapsack
 ```
-### 3.  Use the scores to create a probability model.
+#### 3.  Use the scores to create a probability model.
 
 ```python
 def decision_boundaries(all_fitness_scores):
@@ -157,7 +159,7 @@ def decision_boundaries(all_fitness_scores):
 
 ```
 
-### 4.  Use the probability model to randomly select (with replacement) from the current group of knapsacks.
+#### 4.  Use the probability model to randomly select (with replacement) from the current group of knapsacks.
 
 ```python
 def generateFitterParents(boundaries, knapsacks):
@@ -177,12 +179,12 @@ def generateFitterParents(boundaries, knapsacks):
           break
     return fitter_knapsacks
 ```
-### 5.  Pair original knapsacks and fitter knapsacks together for breeding.
+#### 5.  Pair original knapsacks and fitter knapsacks together for breeding.
 
 ```python
 parents = zip(knapsacks, fitter_knapsacks)
 ```
-### 6.  Use a crossover model to combine items from each parent pair.
+#### 6.  Use a crossover model to combine items from each parent pair.
 
 ```python
 def crossover(knapsack, fitter_knapsack, max_capacity, bias):
@@ -223,7 +225,7 @@ def crossover(knapsack, fitter_knapsack, max_capacity, bias):
   else:
     return child
 ```
-### Use a mutation model for the new set of "children" knapsacks.
+#### Use a mutation model for the new set of "children" knapsacks.
 
 ```python
 def swapOne(child, pop):
@@ -269,7 +271,7 @@ def mutate(children, pop, rate):
 
 ```
 
-### 8.  Search through the children knapsacks for the current best solutions.
+#### 8.  Search through the children knapsacks for the current best solutions.
 
 ```python
 def preserve_elites(all_fitness_scores, mutated_children, num_of_elites):
@@ -284,6 +286,130 @@ def preserve_elites(all_fitness_scores, mutated_children, num_of_elites):
 
 ```
 
+### Unifying Function Structure/Calls
+
+```python
+def initializeKnapsackGA(pop, pop_size, max_capacity, sample_size):
+  '''
+  Step 1:  Collect the sample of chromosomes
+  '''
+  inclusion_rates = inclusionRates(pop, max_capacity, sample_size)
+
+  chromosomes_list = getInitialChromosomes(sample_size, pop_size, inclusion_rates)
+
+  '''
+  Step 2:  Use selected chromosomes to select sample of knapsacks
+  '''
+  knapsacks = pack(pop, chromosomes_list)
+  return knapsacks
+
+def knapsackGA(knapsacks, pop, iter_num, max_capacity, num_iterations, bias, sample_size):
+  '''
+  Step 3:  Generate fitness score for each knapsack in sample
+  '''
+  all_fitness_scores = [(knapsack, fitness_score(knapsack, max_capacity)) for knapsack in knapsacks]
+
+  '''
+  Step 4:  Make list of decision boundaries
+  '''
+  boundaries = decision_boundaries(all_fitness_scores)
+
+  '''
+  Step 5: Use decision boundaries to generate sample of most fit knapsacks
+  '''
+  fitter_knapsacks = generateFitterParents(boundaries, knapsacks)
+
+  '''
+  Step 6:  Breed original knapsacks with fitter knapsacks
+  '''
+  parents = zip(knapsacks, fitter_knapsacks)
+  children = []
+
+  for knapsack, fitter_knapsack in parents:
+    children.append(crossover(knapsack, fitter_knapsack, max_capacity, bias = bias))
+
+  '''
+  Step 7:  Mutate
+  '''
+  mutated_children = mutate(children, pop, rate = 0.2)
+
+  '''
+  Step 8:  Preserve Elites
+  '''
+  mutated_children = preserve_elites(all_fitness_scores, mutated_children, num_of_elites = int(sample_size*0.1))
+
+  '''
+  Step 9:  Compute average and maximum fitness score for mutated children
+  '''
+  new_fitness_scores = [fitness_score(child, max_capacity) for child in mutated_children]
+  avg_fitness_score = sum(new_fitness_scores)/len(new_fitness_scores)
+  max_fitness_score = max(new_fitness_scores)
+
+  '''
+  Step 10:  Return mutated children for next generation
+  '''
+  return mutated_children, avg_fitness_score, max_fitness_score
+```
+
+### Main Code 
+
+```python
+pop_size = 500
+pop = [(random.randint(5,50), random.randint(10,100)) for i in range(pop_size)]
+pop_value_total = sum([a[1] for a in pop])
+pop_weight_total = sum([b[0] for b in pop])
+sample_size = 50
+num_iterations = 10000
+
+#define max capacity of knapsack to be half the total weight of all items
+max_capacity = pop_weight_total/2
+
+#get first sample of knapsacks
+gen = initializeKnapsackGA(pop, pop_size, max_capacity, sample_size)
+
+average_fitness_scores = []
+max_fitness_scores = []
+bias = 0.3
+#iterate through generations of knapsacks
+for i in tqdm(range(num_iterations)):
+  gen, avg_score, max_score = knapsackGA(gen, pop, num_iterations = num_iterations,  iter_num = i, max_capacity=max_capacity, bias = bias, sample_size = sample_size)
+  bias = bias/1.02 #over generations, reduce influence of parent #1 in favor of fitter parent #2
+  average_fitness_scores.append(avg_score)
+  max_fitness_scores.append(max_score)
+
+print(f"Max Capacity of Knapsack: {max_capacity}")
+print(f"Last Generation Weight:  {weight(gen[0])}")
+print(f"Last Generation Max Value: {max_fitness_scores[-1]}")
+print(f"Best Value:  {max(max_fitness_scores)}")
+
+```
+
+### Visualize
+
+We want to see that the fitness scores (i.e. value of items in appropriately-weighted knapsacks) are increasing towards some optimal value.  We also want to verify that there is enough mutation, diversity, and randomness that the algorithm won't get stuck.  Therefore, I visualized both the best value knapsack and the average value knapsack in each generation.  
+```python
+def fitnessScoreGrapher(average_fitness_scores, max_fitness_scores):
+  '''
+  Graphs fitness score for each generation of knapsacks.
+  In black, graph average fitness score of the generation.
+  In red, graph maximum fitness score of the generation.
+  '''
+  xvals = list(range(0, len(average_fitness_scores)))
+  yvals = average_fitness_scores
+  y2vals = max_fitness_scores
+  plt.plot(xvals, yvals, linestyle = '-', marker = 'o', color = 'black', label = "Average Value")
+  plt.plot(xvals, y2vals, linestyle = '--', marker = 'x', color = 'red', label = "Max Value")
+  plt.xlabel("Iteration")
+  plt.ylabel("Fitness Score (Value)")
+  plt.title("Convergence Plot for Knapsack Value")
+  plt.grid(True)
+  plt.legend()
+  plt.xlim(0, max(xvals)+1)
+  plt.ylim(min(yvals)-100, max(y2vals)+100)
+  plt.show()
+```
+
+## Results
 
 
 
