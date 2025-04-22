@@ -39,9 +39,9 @@ My algorithm for this problem included the following steps:
       d.  Repeat for each parent pair.
 7.  Use a mutation model for the new set of "children" knapsacks:
       a.  Set a mutation rate r between 0 and 1 and generate a random real number x between 0 and 1.
-      b.  If $x < r^3$, we swap out 10 items randomly with items from the population.
-      c.  Otherwise, if $x < r^2$, we swap out 3 items.
-      d.  Otherwise, if $x < r$, we swap out 1 item.
+      b.  <p>If $x < r^3$, we swap out 10 items randomly with items from the population.</p>
+      c.  <p>Otherwise, if $x < r^2$, we swap out 3 items.</p>
+      d.  <p>Otherwise, if $x < r$, we swap out 1 item.</p>
       e.  Otherwise, no swaps occur.
 8.  Search through the children knapsacks for the current best solutions.  Be sure to keep them.
 9.  Repeat for many generations, using the new children as the next set of knapsacks to be scored in step 2.
