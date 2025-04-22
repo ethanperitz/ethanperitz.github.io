@@ -13,7 +13,7 @@ permalink: /cv/
 
 <div style="flex: 1 1 60%; min-width: 250px;">
   
-### Summary
+## Summary
 
 Passionate about education, data science, and helping others. I am looking for opportunities to be creative and inspiring. I value finding joy in doing important work.
 
