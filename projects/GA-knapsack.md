@@ -423,3 +423,6 @@ First, the algorithm **continually improves** throughout the generations.  This 
 Second, the average values (shown in black) show a fair amount of noise as the generations progress.  This indicates that enough randomness is preserved by the algorithm so that it doesn't converge prematurely.  
 
 The question is - How do we know that we are converging towards an optimal/near-optimal solution, and not some much worse solution? We can compare the performance of this algorithm to a deterministic one.  For example, greedy algorithms tend to do quite well with the 0-1 Knapsack problems because of the simplistic metrics that can be used to sort the population (in this case, value/weight ratio).  The genetic algorithm implementation above performed about 5% worse than the greedy algorithm.  So, the genetic algorithm (which would outperform greedy in time and space complexity) performs adequately.   
+
+## More to Explore
+[Explore the source code of this implementation here](https://colab.research.google.com/drive/1wa7s_5MDKi_qB08yzcWNEXagEW9PWMqi?usp=sharing)
