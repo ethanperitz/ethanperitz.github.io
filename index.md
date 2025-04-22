@@ -14,7 +14,7 @@ I’m a data scientist and educator. This site is a place for me to share:
 
 ## Featured Personal Projects
 
-Check out [my project showcase](projects.html) for more.
+Check out [my project showcase](projects.md) for more.
 
 ---
 
@@ -24,12 +24,12 @@ Check out [my project showcase](projects.html) for more.
 - [{{ post.title }}]({{ post.url }}) — {{ post.date | date: "%b %-d, %Y" }}
 {% endfor %}
 
-[Read the full blog →](blog.html)
+[Read the full blog →](blog.md)
 
 ---
 
 ## Tools for Teachers
 
-Explore some of the [data science lesson plans and projects](lessons.html) I’ve created for high school students.
+Explore some of the [data science lesson plans and projects](lessons.md) I’ve created for high school students.
 
 ---
