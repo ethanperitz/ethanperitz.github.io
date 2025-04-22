@@ -50,8 +50,8 @@ My algorithm for this problem included the following steps:
 
 ### 1.  Initialize the algorithm with randomly selected groups of items
 
-<code>
 ```python
+
 def inclusionRates(pop, max_capacity, sample_size):
   '''
   Generates a distribution of inclusion rates based on binomial probabilities,
@@ -104,11 +104,11 @@ def getInitialChromosomes(sample_size, pop_size, inclusion_rates):
     knapsack = [pop[index] for index, chromosome in enumerate(chromosomes) if chromosome == 1]
     knapsacks.append(knapsack)
   return knapsacks
-</code>
+```
 
 ### 2.  Score each knapsack solution.
 
-<code>
+
 ```python
   def weight(knapsack):
   '''
@@ -141,4 +141,6 @@ def repair_overweight(knapsack, max_capacity):
   while weight(sorted_knapsack) > max_capacity:
     sorted_knapsack.pop(0)
   return sorted_knapsack
-</code>
+```
+
+
