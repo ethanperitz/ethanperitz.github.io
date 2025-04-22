@@ -7,7 +7,6 @@ permalink: /cv/
 # Ethan Peritz  
 📍 Boston, MA  
 📧 ethan.peritz@gmail.com  
-📞 (203) 247-8110  
 
 ---
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
