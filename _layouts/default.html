@@ -1,3 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-{% include mathjax.html %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+
+  <!-- Include MathJax script -->
+  {% include mathjax.html %}
+
+  <!-- You can add other meta tags, links, or styles here -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1><a href="{{ site.url | default: site.baseurl }}">{{ site.title }}</a></h1>
+    <nav>
+      <ul>
+        <li><a href="{{ '/' | absolute_url }}">Home</a></li>
+        <!-- Add other navigation links here -->
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content Section -->
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
