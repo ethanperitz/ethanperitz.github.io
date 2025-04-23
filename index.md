@@ -18,11 +18,7 @@ Check out [my project showcase](projects.md) for more.
 
 ---
 
-## Recent Posts
-
-{% for post in site.posts limit: 3 %}
-- [{{ post.title }}]({{ post.url }}) — {{ post.date | date: "%b %-d, %Y" }}
-{% endfor %}
+## Blog
 
 [Read the full blog →](blog.md)
 
