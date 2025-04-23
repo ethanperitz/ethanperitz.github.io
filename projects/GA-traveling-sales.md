@@ -266,3 +266,9 @@ For the entire implementation, check out the [Colab notebook here](https://colab
 ## Results
 
 First, let's walk through a single run of the notebook.  I arbitrarily decided to run this for 8 randomly selected city locations.  
+
+<p align="center">
+<div style="flex: 0 0 auto; padding-top: 10px; padding-bottom: 10px;">
+  <img src="/assets/img/GA-sales-plots.pdf" alt="GA Traveling Salesperson Plot" width="800" />
+</div>
+</p>
