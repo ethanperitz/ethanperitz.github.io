@@ -23,10 +23,10 @@ For example, I teach my Data Science course in R.  When teaching students about 
 ## Template Code for k-Nearest Neighbors Classification Tasks in R
 ```r
 #factorize target/outcome variable
-tumors$ <- factor(tumors$ )
+data$ <- factor(data$ )
 
 #split into train and test sets
-data_split <- initial_split(data = tumors , prop = ())
+data_split <- initial_split(data = data , prop = ())
 training <- training(data_split)
 testing <- testing(data_split)
 
