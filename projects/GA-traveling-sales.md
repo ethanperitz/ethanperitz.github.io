@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Genetic Algorithm for Traveling Salesman Problem
+permalink:  ethanperitz.github.io/projects/GA-traveling-sales.md
 ---
 
 # Genetic Algorithm for Traveling Salesperson Problem
