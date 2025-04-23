@@ -4,7 +4,7 @@ title: Calculus vs. Data Science
 date: 2025-04-23
 ---
 
-# Calculus vs. Data Science - Battle Royale?
+# Calculus vs. Data Science
 
 There is a debate that has been brewing for several years in mathematics education.  Should Calculus remain the gold standard for high-achieving high school math students? If not, what does a rich math experience in high school look like without Calculus as the end goal?
 
