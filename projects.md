@@ -6,3 +6,4 @@ permalink: /projects/
 
 ## Projects
 [Genetic Algorithm for 0-1 Knapsack Problem](/projects/GA-knapsack.md)
+[Genetic Algorithm for Traveling Salesperson Problem](/projects/GA-traveling-sales.md)
