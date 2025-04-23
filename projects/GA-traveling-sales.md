@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Genetic Algorithm for Traveling Salesman Problem
-permalink:  /projects/GA-traveling-sales
+permalink:  /projects/GA-traveling-sales/
 ---
 
 # Genetic Algorithm for Traveling Salesperson Problem
