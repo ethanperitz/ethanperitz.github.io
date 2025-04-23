@@ -14,7 +14,7 @@ In my experience teaching all levels of high school math, including Data Science
 
 In my experience as a Data Scientist, especially when I was getting my MS, I found that my knowledge of pure mathematics, especially the content I learned at the high school level, was invaluable.  Knowing even rudimentary information about derivatives and asymptotic function behavior allowed me to access the graduate-level content much more readily.  
 
-So, I do not believe in the bifurcation of pure and applied mathematics.  One of the few constants of my career has been how learning more mathematics helps me to understand the mathematics I already knew and understood.  
+So, I do not believe in the bifurcation of pure and applied mathematics.  One of the few constants of my career has been how learning more mathematics helps me to understand the mathematics I thought I already knew and understood.  
 
 As I started to teach Data Science, I found it very easy to fall into a deadly trap.  When the work you do with students is mostly *application-based*, students tend to gravitate towards *how* as opposed to *why*.  And as a teacher, I found that I could get away with teaching the *how* without the *why*, and my students could still produce really nice work.  
 
