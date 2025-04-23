@@ -267,8 +267,12 @@ For the entire implementation, check out the [Colab notebook here](https://colab
 
 First, let's walk through a single run of the notebook.  I arbitrarily decided to run this for 8 randomly selected city locations.  
 
+To assess the performance of the algorithm, I also ran the brute force method, where all routes were searched and the best distance was recorded.  This isn't a practical algorithm for this problem, as the time complexity increases factorially.  But, for just 8 cities, the brute force algorithm didn't take too long to find the optimal path with a distance of 635.8.  
+
+The genetic algorithm took 546 generations to find this optimal path, which completed in less than 30 seconds. 
 <p align="center">
 <div style="flex: 0 0 auto; padding-top: 10px; padding-bottom: 10px;">
-  <img src="/assets/img/GA-sales-plots.pdf" alt="GA Traveling Salesperson Plot" width="800" />
+  <img src="/assets/img/GA-sales-plots.pdf" alt="GA Traveling Salesperson Plot" width="500" />
 </div>
 </p>
+
