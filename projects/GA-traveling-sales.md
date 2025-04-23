@@ -42,7 +42,7 @@ A salesperson needs to visit n cities and then return to their starting city.  F
 7.  Use a crossover model to breed the next generation of routes from each parent pair.
     a.  Choose a percentage p of cities to select from parent #1.  If p = 0.5, half of each child route will be from parent #1 (the theoretically "less fit" parent), so this hyperparameter can be tuned to bias more heavily towards the "more fit" parent.
     b.  Add the selected cities from parent #1 into the child route.
-    c.  Work element-wise through parent #2, adding cities to the child route if they are not already in the child.  <- Hopefully, you see that this approach can be modified.  There could be random selection or some other ingenious algorithm that makes better decisions about the "right" cities to choose from the fitter parent.
+    c.  Work element-wise through parent #2, adding cities to the child route if they are not already in the child.  (Hopefully, you see that this approach can be modified.  There could be random selection or some other ingenious algorithm that makes better decisions about the "right" cities to choose from the fitter parent.)
 8.  Give each child route an opportunity to be "mutated."  With some small mutation rate m, if a random number x < m is selected, choose two adjacent cities on a route and swap their order.
 9.  Iterate to the next generation, using the children routes as the new sample.
 
