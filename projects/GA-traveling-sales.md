@@ -19,24 +19,32 @@ A salesperson needs to visit n cities and then return to their starting city.  F
 1.  Define each city as a set of xy coordinates.
     The "population" consists of every permutation of routes between these cities.
     For example, if the cities are (10, 20), (25, 40), and (50, 55), the population is:
+    
     (10, 20) (25, 40) (50, 55)
+    
     (25, 40) (10, 20), (50, 55)
+    
     (25, 40) (50, 55), (10, 20)
+    
     (50, 55) (25, 40) (10, 20)
+    
     (50, 55) (10, 20) (25, 40)
+    
     (10, 20) (50, 55) (25, 40)
+    
     Important note:  This approach implies that the salesperson can start in any of the cities.  This may deviate slightly from the original problem statement, depending on how you read it.  But, the differences are trivial, and an implementation that fixes the starting city is a fairly simple spinoff of this approach.
+    
     Important note #2:  It's useless to actually make a list of all permutations.  Instead, in Step #5 below, we simply do k random shuffles of the cities, making sure that there are no repeated routes.
-2.  Define a distance function d(r) as the sum of Euclidean distances between each successive city on route r, including from the last city back to the first.
-3.  Randomly sample k routes from the population.  For each route, compute a fitness score f(r) = 1/(d(r)+1).  Addition by 1 in the denominator prevents the highly unlikely scenario that a route has distance 0.
-4.  Normalize the fitness scores using the function N(f(r)) = f(r)/sum(f(r)).  The sum of the Normalized scores is 1 by definition, making the fitness scores into a workable probability model.
-5.  Use the probability model to randomly select k routes with replacement.  The routes with higher fitness scores are more likely to be selected.  We now have k original routes and k "more fit" routes that are paired as "parents".
-6.  Use a crossover model to breed the next generation of routes from each parent pair.
+3.  Define a distance function d(r) as the sum of Euclidean distances between each successive city on route r, including from the last city back to the first.
+4.  Randomly sample k routes from the population.  For each route, compute a fitness score f(r) = 1/(d(r)+1).  Addition by 1 in the denominator prevents the highly unlikely scenario that a route has distance 0.
+5.  Normalize the fitness scores using the function N(f(r)) = f(r)/sum(f(r)).  The sum of the Normalized scores is 1 by definition, making the fitness scores into a workable probability model.
+6.  Use the probability model to randomly select k routes with replacement.  The routes with higher fitness scores are more likely to be selected.  We now have k original routes and k "more fit" routes that are paired as "parents".
+7.  Use a crossover model to breed the next generation of routes from each parent pair.
     a.  Choose a percentage p of cities to select from parent #1.  If p = 0.5, half of each child route will be from parent #1 (the theoretically "less fit" parent), so this hyperparameter can be tuned to bias more heavily towards the "more fit" parent.
     b.  Add the selected cities from parent #1 into the child route.
     c.  Work element-wise through parent #2, adding cities to the child route if they are not already in the child.  <- Hopefully, you see that this approach can be modified.  There could be random selection or some other ingenious algorithm that makes better decisions about the "right" cities to choose from the fitter parent.
-7.  Give each child route an opportunity to be "mutated."  With some small mutation rate m, if a random number x < m is selected, choose two adjacent cities on a route and swap their order.
-8.  Iterate to the next generation, using the children routes as the new sample.
+8.  Give each child route an opportunity to be "mutated."  With some small mutation rate m, if a random number x < m is selected, choose two adjacent cities on a route and swap their order.
+9.  Iterate to the next generation, using the children routes as the new sample.
 
 ## Python Implementation
 
@@ -275,8 +283,8 @@ The genetic algorithm took 546 generations to find this optimal path, which comp
 If we aren't satisfied with 500+ generations to find a good solution, it should be noted that a solution with distance 648.4 was found on Iteration 92, which is about 2% off from optimal.  So, we can be reasonably confident that this algorithm efficiently finds *near* optimal solutions, and will eventually find optimal solutions.  
 
 <p align="center">
-<div style="flex: 0 0 auto; padding-top: 10px; padding-bottom: 10px;">
-  <img src="/assets/img/GA-sales-plots.png" alt="GA Traveling Salesperson Plot" width="500" />
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/GA-sales-plots.png" alt="GA Traveling Salesperson Plot" width="750" />
 </div>
 </p>
 
