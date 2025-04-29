@@ -55,7 +55,7 @@ This was a challenging and really cool project from start to finish.  This is si
 
 
 ## Example Maze
-
+<code>
 █ ███   █████    █  ██ ████  ████  ██   
  █ █ ████ █ ██ ████ ████ ████  ██ ███ █ 
 █  ███ ███     █  ██████  █   ██ █ █  █ 
@@ -96,10 +96,10 @@ This was a challenging and really cool project from start to finish.  This is si
 S         █                ██ █ █  █    
    █    █   █ █  █ █               █    
      █  █ █        ███        █  █  ██ █
-
+</code>
 
 ## Solution Found by Algorithm Within 100 Generations
-
+<code>
 █ ███   █████    █  ██ ████  ████  ██   
  █ █ ████ █ ██ ████ ████ ████  ██ ███ █ 
 █  ███ ███     █  ██████  █   ██ █ █  █ 
@@ -140,3 +140,4 @@ S         █                ██ █ █  █
 SXX       █                ██ █ █  █    
    █    █   █ █  █ █               █    
      █  █ █        ███        █  █  ██ █
+</code>
