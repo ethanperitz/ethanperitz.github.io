@@ -10,3 +10,4 @@ permalink: /projects/
 
 >[Genetic Algorithm for Traveling Salesperson Problem](/projects/GA-traveling-sales.md)
 
+>[Genetic Algorithm Maze Solver](/projects/GA-Maze-Solver.md)
