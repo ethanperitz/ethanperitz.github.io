@@ -31,7 +31,155 @@ This was a challenging and really cool project from start to finish.  This is si
 ## Functions in Python
 
 ### Make the Maze
+Making the maze was a fun challenge.  Essentially, the steps I followed were to generate an nxn array of 0's, randomly select two spots along the border to represent the start and goal, find a possible pathway from start to goal, build walls around the possible pathway, then build out more dead ends.  The following function structure made this possible:
+<code>
+def findBorder(dimension):
+  '''
+  Finds random locations along the border of the maze for start and goal
+  '''
+  index1 = random.randint(0, dimension-1)
+  if index1 == 0 or index1 == dimension-1:
+    index2 = random.randint(0, dimension-1)
+  else:
+    index2 = random.choice([0, dimension - 1])
+  return index1, index2
 
+def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2):
+  '''
+  Ensure that the start and the goal are different locations
+  '''
+  if goal_index_1 == start_index_1:
+      if goal_index_2 == start_index_2:
+        return False
+  return True
+
+def findPath(maze):
+  '''
+  Use depth-first search to find a pathway from start to goal.
+  '''
+  dimension = len(maze)
+  path = []
+  visited = set()
+
+  #find goal
+  goalx, goaly = 0, 0
+  while('G' not in maze[goalx]):
+    goalx += 1
+  while maze[goalx][goaly] != 'G':
+    goaly += 1
+  goal = (goalx, goaly)
+
+  #find start
+  x, y = 0, 0
+  while 'S' not in maze[x]:
+    x += 1
+  while maze[x][y] != 'S':
+    y += 1
+  start = (x, y)
+
+  #depth-first-search for maze path
+  def dfs(x, y):
+    '''
+    Credit to ChatGPT for help with DFS algorithm
+    '''
+    if (x, y) == goal:
+      path.append((x, y))
+      return True
+    visited.add((x, y))
+
+    directions = [(0,1), (1,0), (0,-1), (-1,0)]
+    random.shuffle(directions)
+    for dx, dy in directions:
+      nx, ny = x + dx, y + dy
+      if 0 <= nx < dimension and 0 <= ny < dimension:
+        if (nx, ny) not in visited:
+          if dfs(nx, ny):
+            path.append((x, y))
+            return True
+
+    return False
+  if dfs(start[0], start[1]):
+    return path[::-1]
+
+
+def wallsAroundPath(maze, path):
+  '''
+  Set all squares around the solution path of a maze to 1 (a wall)
+  '''
+  dimension = len(maze)
+  for x, y in path:
+    for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
+      nx, ny = x+dx, y+dy
+      if 0 <= nx < dimension and 0 <= ny < dimension and (nx, ny) not in path:
+        maze[nx][ny] = 1
+  return maze
+
+def wallsOutsidePath(maze, path):
+  '''
+  Scatter walls in random places around the maze, but outside the solution path
+  '''
+  dimension = len(maze)
+  x, y = 0, 0
+  for i in range(dimension):
+    for j in range(dimension):
+      if (i, j) not in path:
+        maze[i][j] = random.choice([0,0,0,1,1,1,1])
+  return maze
+
+def add_branches(maze, path, num_branches=10, max_branch_length=4):
+    '''
+    Add branches from random spots on the solution path to make dead ends
+    '''
+    n = len(maze)
+    path_set = set(path)
+    for _ in range(num_branches):
+        start = random.choice(path)
+        x, y = start
+        branch = []
+        for _ in range(random.randint(1, max_branch_length)):
+            directions = random.sample([(-1,0), (1,0), (0,-1), (0,1)], 4)
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+                if (0 <= nx < n and 0 <= ny < n and
+                    (nx, ny) not in path_set and maze[nx][ny] != 0):
+                    maze[nx][ny] = 0  # carve a path
+                    branch.append((nx, ny))
+                    x, y = nx, ny
+                    break
+            else:
+                break  # no directions left to expand
+    return maze
+
+def buildMaze(dimension=10):
+  '''
+  Unifying function that builds the maze.
+  '''
+  maze = [[0 for _ in range(dimension)] for _ in range(dimension)]
+  while True:
+  #start and goal of maze can be anywhere on the border
+    start_index_1, start_index_2 = findBorder(dimension)
+    goal_index_1 , goal_index_2 = findBorder(dimension)
+    if differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2):
+      maze[start_index_1][start_index_2] = "S"
+      maze[goal_index_1][goal_index_2] = "G"
+
+      #find a path through the maze
+      solution = findPath(maze)
+      #add walls
+      maze = wallsAroundPath(maze, solution)
+      maze = wallsOutsidePath(maze, solution)
+      maze = add_branches(maze, solution, num_branches=6, max_branch_length= 4)
+      return maze, (start_index_1, start_index_2), (goal_index_1, goal_index_2)
+
+def printMaze(maze):
+  '''
+  Print the maze in a nice format
+  Credit to ChatGPT for this code
+  '''
+  symbols = {1: "█", 0: " ", "S": "S", "G": "G"}
+  for row in maze:
+    print("".join(symbols.get(cell, "?") for cell in row))
+</code>
 
 
 ### Generate Maze Solutions Greedily
