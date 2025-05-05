@@ -184,9 +184,10 @@ def printMaze(maze):
 
 ### Generate Maze Solutions Greedily
 
-<div style="flex: 0 0 auto; padding-top: 20px; padding-bottom: 20px;">
-  <img src="/assets/img/GA-Maze-Solution-Image.pdf alt="Maze Solution with Greedy Heuristic" width="500" style="border-radius: 100px;" />
-</div>
+<iframe src="/assets/img/GA-Maze-Solution-Image.pdf" width="100%" height="600px">
+    This browser does not support PDFs. Please download the PDF to view it: 
+    <a href="/assets/img/GA-Maze-Solution-Image.pdf">Download PDF</a>.
+</iframe>
 
 ### Fitness Scores, Decision Boundaries
 
