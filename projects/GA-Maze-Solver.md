@@ -36,7 +36,9 @@ This was a challenging and really cool project from start to finish.  This is si
 
 ### Generate Maze Solutions Greedily
 
-
+<div style="flex: 0 0 auto; padding-top: 20px; padding-bottom: 20px;">
+  <img src="/assets/img/GA-Maze-Solution-Image.pdf alt="Maze Solution with Greedy Heuristic" width="500" style="border-radius: 100px;" />
+</div>
 
 ### Fitness Scores, Decision Boundaries
 
