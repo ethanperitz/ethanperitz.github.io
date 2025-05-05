@@ -34,7 +34,7 @@ This was a challenging and really cool project from start to finish.  This is si
 Making the maze was a fun challenge.  Essentially, the steps I followed were to generate an nxn array of 0's, randomly select two spots along the border to represent the start and goal, find a possible pathway from start to goal, build walls around the possible pathway, then build out more dead ends.  The following function structure made this possible:
 
 
-<code>python</code>
+```python
 def findBorder(dimension):
   '''
   Finds random locations along the border of the maze for start and goal
@@ -45,12 +45,8 @@ def findBorder(dimension):
   else:
     index2 = random.choice([0, dimension - 1])
   return index1, index2
-
-
-
-
-  
-<code>
+```
+```python
 def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2):
   '''
   Ensure that the start and the goal are different locations
@@ -59,8 +55,8 @@ def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2)
       if goal_index_2 == start_index_2:
         return False
   return True
-</code>
-<code>
+```
+```python
 def findPath(maze):
   '''
   Use depth-first search to find a pathway from start to goal.
@@ -103,8 +99,8 @@ def findPath(maze):
     return False
   if dfs(start[0], start[1]):
     return path[::-1]
-</code>
-<code>
+```
+```python
 def wallsAroundPath(maze, path):
   '''
   Set all squares around the solution path of a maze to 1 (a wall)
@@ -116,8 +112,8 @@ def wallsAroundPath(maze, path):
       if 0 <= nx < dimension and 0 <= ny < dimension and (nx, ny) not in path:
         maze[nx][ny] = 1
   return maze
-</code>
-<code>
+```
+```python
 def wallsOutsidePath(maze, path):
   '''
   Scatter walls in random places around the maze, but outside the solution path
@@ -129,8 +125,8 @@ def wallsOutsidePath(maze, path):
       if (i, j) not in path:
         maze[i][j] = random.choice([0,0,0,1,1,1,1])
   return maze
-</code>
-<code>
+```
+```python
 def add_branches(maze, path, num_branches=10, max_branch_length=4):
     '''
     Add branches from random spots on the solution path to make dead ends
@@ -154,9 +150,8 @@ def add_branches(maze, path, num_branches=10, max_branch_length=4):
             else:
                 break  # no directions left to expand
     return maze
-</code>
-                  
-<code>
+```               
+```python
 def buildMaze(dimension=10):
   '''
   Unifying function that builds the maze.
@@ -177,9 +172,9 @@ def buildMaze(dimension=10):
       maze = wallsOutsidePath(maze, solution)
       maze = add_branches(maze, solution, num_branches=6, max_branch_length= 4)
       return maze, (start_index_1, start_index_2), (goal_index_1, goal_index_2)
-</code>
+```
 
-<code>
+```python
 def printMaze(maze):
   '''
   Print the maze in a nice format
@@ -188,7 +183,7 @@ def printMaze(maze):
   symbols = {1: "█", 0: " ", "S": "S", "G": "G"}
   for row in maze:
     print("".join(symbols.get(cell, "?") for cell in row))
-
+```
 ### Generate Maze Solutions Greedily
 
 <iframe src="/assets/img/GA-Maze-Solution-Image.pdf" width="100%" height="600px">
