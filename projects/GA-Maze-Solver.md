@@ -186,25 +186,302 @@ def printMaze(maze):
 ```
 ### Generate Maze Solutions Greedily
 
+```python
+def manhattan(pos1, pos2):
+  '''
+  Computes Manhattan distance between two positions
+  '''
+  return abs(pos1[0]-pos2[0]) + abs(pos1[1]-pos2[1])
+  
+
+def verify_path(path, maze, start, goal):
+  '''
+  Verifies the solution path actually works
+  '''
+  if not path or path[0] != start or path[-1] != goal:
+        return False
+  for i in range(1, len(path)):
+        x0, y0 = path[i-1]
+        x1, y1 = path[i]
+        # Ensure step is legal
+        if abs(x1 - x0) + abs(y1 - y0) != 1:
+            return False
+        # Ensure no walls
+        if maze[y1][x1] == 1:
+            return False
+  return True
+
+def move(curr_position, visited, maze, fitness_score, path, goal):
+  '''
+  Unifying function that moves a solver to an open square, prioritizing the goal,
+  followed by any unvisited space (greedily based on Manhattan distance), followed
+  by any visited space (backtracking)
+  '''
+  possible_moves = [] #[up, down, right, left]
+  #check up
+  possible_moves.append(next_space(position = (curr_position[0] - 1, curr_position[1]), maze = maze, visited = visited))
+
+  #check down
+  possible_moves.append(next_space(position = (curr_position[0] + 1, curr_position[1]), maze = maze, visited = visited))
+
+  #check right
+  possible_moves.append(next_space(position = (curr_position[0], curr_position[1] + 1), maze = maze, visited = visited))
+
+  #check left
+  possible_moves.append(next_space(position = (curr_position[0], curr_position[1] - 1), maze = maze, visited = visited))
+
+  #if goal is in adacent square, immediately go there
+  if 'G' in possible_moves:
+    index = possible_moves.index('G')
+
+  #if unvisited space is available, greedily choose the one with closest manhattan distance to goal
+  elif 0 in possible_moves:
+    indices =[index for index, move in enumerate(possible_moves) if move == 0]
+    min_distance = float('inf')
+    best_index = None
+    for index in indices:
+      curr_dist = manhattan(next_move(curr_position, index), goal)
+      if curr_dist == min_distance and random.random() < 0.5: #choose randomly between two equally good options
+        best_index = index
+      if  curr_dist < min_distance:
+        min_distance = curr_dist
+        best_index = index
+    index = best_index
+
+  #if only visited spaces are available
+  elif 'V' in possible_moves:
+    indices =[index for index, move in enumerate(possible_moves) if move == 'V']
+    index = random.choice(indices)
+
+  elif 'S' in possible_moves:
+    index = possible_moves.index('S')
+
+  else:
+    fitness_score += 1
+    return curr_position, visited, fitness_score, path
+
+  #update position, visited, and fitness score
+  new_position = next_move(curr_position, index)
+  visited.add(new_position)
+  path.append(new_position)
+  fitness_score += 1
+  return new_position, visited, fitness_score, path
+
+def next_move(curr_position, index):
+  '''
+  Set the next move's coordinates.
+  '''
+  if index == 0:
+      new_position = (curr_position[0] - 1, curr_position[1])
+  elif index == 1:
+      new_position = (curr_position[0] + 1, curr_position[1])
+  elif index == 2:
+      new_position = (curr_position[0], curr_position[1] + 1)
+  elif index == 3:
+      new_position = (curr_position[0], curr_position[1] - 1)
+  return new_position
+
+
+def next_space(position: tuple, maze: list, visited):
+  '''
+  Returns the type of cell in the intended position
+  for determining the best moves to make.
+  '''
+  rows, cols = len(maze), len(maze[0])
+  x, y = position
+  if not (0 <= x < rows and 0 <= y < cols):
+      return 1  # Treat out-of-bounds as wall
+  if maze[position[0]][position[1]] == 1:
+    return 1
+  elif maze[position[0]][position[1]] == 0:
+    if (position[0], position[1]) in visited:
+      return 'V'
+    return 0
+  elif maze[position[0]][position[1]] == 'G':
+    return 'G'
+  elif maze[position[0]][position[1]] == 'S':
+    return 'S'
+
+def solution(start, goal, maze):
+  '''
+  Unifying function to find a solution through the maze
+  '''
+  visited = set()
+  max_score = (len(maze)**2)*2
+  curr_position = start
+  fitness_score = 0
+  visited.add(start)
+  path = [start]
+  while goal not in visited and fitness_score < max_score:
+    new_position, visited, fitness_score, path = move(curr_position = curr_position,
+                                                      visited = visited,
+                                                      maze = maze,
+                                                      fitness_score = fitness_score,
+                                                      path = path,
+                                                      goal = goal)
+    curr_position = new_position
+  return path, fitness_score
+
+def printSolution(maze, path):
+  '''
+  Nicely print the solution with X's as the forged path
+  '''
+  solvedMaze = [row.copy() for row in maze]
+  for x, y in path:
+    if maze[x][y] == 0:
+      solvedMaze[x][y] = 'X'
+  symbols = {1: "█", 0: " ", "S": "S", "G": "G", "X":"X"}
+  for row in solvedMaze:
+      print("".join(symbols.get(cell, "?") for cell in row))
+```
+
 <iframe src="/assets/img/GA-Maze-Solution-Image.pdf" width="100%" height="600px">
     This browser does not support PDFs. Please download the PDF to view it: 
     <a href="/assets/img/GA-Maze-Solution-Image.pdf">Download PDF</a>.
 </iframe>
 
 ### Fitness Scores, Decision Boundaries
+```python
+def decisionBoundaries(fitness_scores):
+  normalized_scores = [1/score for score in fitness_scores]
+  probability_model = [score/sum(normalized_scores) for score in normalized_scores]
+  boundaries = [0]
+  for index, score in enumerate(probability_model):
+   boundaries.append(boundaries[index]+score)
+  return boundaries
 
+def selectParents(solution_paths, boundaries):
+  selected_paths = []
+  for _ in range(len(solution_paths)):
+    r = random.random()
+    for index,boundary in enumerate(boundaries[1:]):
+      if r < boundary:
+        selected_paths.append(solution_paths[index])
+  return selected_paths
+```
 
 ### Crossover
+```python
+def crossover(solution_paths, selected_paths, maze):
+  children = []
+  children_scores = []
+  high_mutation = []
+  for index, path1 in enumerate(solution_paths):
+    path2 = selected_paths[index]
 
+    #Heuristic 1:  Preserve very short paths into next generation with doubled mutation rate
+    if len(path1) < 4 or len(path2) < 4:
+      child = path1 if len(path1) < len(path2) else path2
+      children.append(child)
+      children_scores.append(len(child)-1)
+      high_mutation.append(True)
+      continue
+
+    #Heuristic 2: Use manhattan distance bias to select near-optimal splice points
+    min_distance = float('inf')
+    best_pair = None
+    for p1 in path1[:len(path1)//2]:
+      for p2 in path2[len(path2)//2:]:
+        dist = abs(p1[0]-p2[0]) + abs(p1[1]-p2[1])
+        if dist < min_distance:
+          min_distance = dist
+          best_pair = (p1, p2)
+    if best_pair is None:
+      child = path1 if len(path1) < len(path2) else path2
+      children.append(child)
+      children_scores.append(len(child)-1)
+      high_mutation.append(True)
+      continue
+
+    point1, point2 = best_pair
+
+    #validate that the best pair has valid indices
+    try:
+      idx1 = path1.index(point1)
+      idx2 = path2.index(point2)
+    except ValueError:
+      #default to Heuristic #1
+      child = path1 if len(path1) < len(path2) else path2
+      children.append(child)
+      children_scores.append(len(child)-1)
+      high_mutation.append(True)
+      continue
+    bridge, new_score = solution(start=point1, goal=point2, maze=maze)
+    if bridge:
+      child = path1[:idx1] + bridge + path2[idx2+1:]
+    else:
+      child = path1
+    children.append(child)
+    children_scores.append(len(child) - 1)
+    high_mutation.append(False)
+  return children, children_scores, high_mutation
+```
 
 ### Mutation
+```python
+def mutate(children, scores, high_mutation, maze, rate):
+  mutated_children = []
+  for index, child in enumerate(children):
+    #preserve best
+    if scores[index] == min(scores):
+      mutated_children.append(child)
+      continue
+    if high_mutation[index]:
+      adjusted_rate = rate*1.2 #increase mutation rate by 50%
+    else:
+      adjusted_rate = rate
+    r = random.random()
+    if r < adjusted_rate:
+      #choose random starting and ending points, build path between them
+      mutate_start_index = random.randint(1, len(child)//2)
+      mutate_end_index = random.randint(len(child)//2, len(child) - 2)
+      if mutate_start_index >= mutate_end_index:
+        mutated_children.append(child)
+        continue
+      mutate_start = child[mutate_start_index]
+      mutate_end = child[mutate_end_index]
+      bridge, _ = solution(start = mutate_start, goal = mutate_end, maze = maze)
+      if not bridge or not isinstance(bridge, list) or bridge[0] != mutate_start or bridge[-1] != mutate_end:
+        mutated_children.append(child)
+        continue
+      child = child[:mutate_start_index] + bridge + child[mutate_end_index+1:]
+      #print("mutation!") #helpful for tracking frequency of mutations
+    mutated_children.append(child)
 
+  return mutated_children
+```
 
 ### Preserve Best Solutions
-
+```python
+def select_elites(population, scores, k):
+    # Return the top-k elite paths and their scores
+    elite_indices = sorted(range(len(scores)), key=lambda i: scores[i])[:k]
+    return [population[i] for i in elite_indices], [scores[i] for i in elite_indices]
+```
 
 ### Graph Convergence
-
+```python
+def fitnessScoreGrapher(average_fitness_scores, min_fitness_scores):
+  '''
+  Graphs fitness score for each generation.
+  In black, graph average fitness score of the generation.
+  In red, graph minimum fitness score of the generation.
+  '''
+  xvals = list(range(0, len(average_fitness_scores)))
+  yvals = average_fitness_scores
+  y2vals = min_fitness_scores
+  plt.plot(xvals, yvals, linestyle = '-', marker = '', color = 'black', label = "Average Value")
+  plt.plot(xvals, y2vals, linestyle = '--', marker = '', color = 'red', label = "Min Value")
+  plt.plot(list(range(0, len(average_fitness_scores))), [min(min_fitness_scores)]*len(average_fitness_scores), linestyle = '-', marker = '',color= 'blue', label = "Best Value")
+  plt.xlabel("Generation")
+  plt.ylabel("Fitness Score (Path Length)")
+  plt.title("Convergence Plot for Fitness Scores")
+  plt.grid(True)
+  plt.legend()
+  plt.xlim(0, max(xvals)+1)
+  plt.ylim(min(y2vals)-5, max(yvals)+5)
+  plt.show()
+```
 
 
 
