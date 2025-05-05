@@ -62,7 +62,6 @@ def findPath(maze):
   dimension = len(maze)
   path = []
   visited = set()
-
   #find goal
   goalx, goaly = 0, 0
   while('G' not in maze[goalx]):
@@ -70,7 +69,6 @@ def findPath(maze):
   while maze[goalx][goaly] != 'G':
     goaly += 1
   goal = (goalx, goaly)
-
   #find start
   x, y = 0, 0
   while 'S' not in maze[x]:
@@ -78,7 +76,6 @@ def findPath(maze):
   while maze[x][y] != 'S':
     y += 1
   start = (x, y)
-
   #depth-first-search for maze path
   def dfs(x, y):
     '''
@@ -88,7 +85,6 @@ def findPath(maze):
       path.append((x, y))
       return True
     visited.add((x, y))
-
     directions = [(0,1), (1,0), (0,-1), (-1,0)]
     random.shuffle(directions)
     for dx, dy in directions:
@@ -98,13 +94,11 @@ def findPath(maze):
           if dfs(nx, ny):
             path.append((x, y))
             return True
-
     return False
   if dfs(start[0], start[1]):
     return path[::-1]
 </code>
 <code>
-
 def wallsAroundPath(maze, path):
   '''
   Set all squares around the solution path of a maze to 1 (a wall)
