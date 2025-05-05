@@ -43,7 +43,8 @@ def findBorder(dimension):
   else:
     index2 = random.choice([0, dimension - 1])
   return index1, index2
-
+</code>
+<code>
 def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2):
   '''
   Ensure that the start and the goal are different locations
@@ -52,7 +53,8 @@ def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2)
       if goal_index_2 == start_index_2:
         return False
   return True
-
+</code>
+<code>
 def findPath(maze):
   '''
   Use depth-first search to find a pathway from start to goal.
@@ -100,7 +102,8 @@ def findPath(maze):
     return False
   if dfs(start[0], start[1]):
     return path[::-1]
-
+</code>
+<code>
 
 def wallsAroundPath(maze, path):
   '''
@@ -113,7 +116,8 @@ def wallsAroundPath(maze, path):
       if 0 <= nx < dimension and 0 <= ny < dimension and (nx, ny) not in path:
         maze[nx][ny] = 1
   return maze
-
+</code>
+<code>
 def wallsOutsidePath(maze, path):
   '''
   Scatter walls in random places around the maze, but outside the solution path
@@ -125,7 +129,8 @@ def wallsOutsidePath(maze, path):
       if (i, j) not in path:
         maze[i][j] = random.choice([0,0,0,1,1,1,1])
   return maze
-
+</code>
+<code>
 def add_branches(maze, path, num_branches=10, max_branch_length=4):
     '''
     Add branches from random spots on the solution path to make dead ends
@@ -149,7 +154,8 @@ def add_branches(maze, path, num_branches=10, max_branch_length=4):
             else:
                 break  # no directions left to expand
     return maze
-
+</code>
+<code>
 def buildMaze(dimension=10):
   '''
   Unifying function that builds the maze.
@@ -170,7 +176,8 @@ def buildMaze(dimension=10):
       maze = wallsOutsidePath(maze, solution)
       maze = add_branches(maze, solution, num_branches=6, max_branch_length= 4)
       return maze, (start_index_1, start_index_2), (goal_index_1, goal_index_2)
-
+</code>
+<code>
 def printMaze(maze):
   '''
   Print the maze in a nice format
