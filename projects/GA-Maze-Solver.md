@@ -32,6 +32,7 @@ This was a challenging and really cool project from start to finish.  This is si
 
 ### Make the Maze
 Making the maze was a fun challenge.  Essentially, the steps I followed were to generate an nxn array of 0's, randomly select two spots along the border to represent the start and goal, find a possible pathway from start to goal, build walls around the possible pathway, then build out more dead ends.  The following function structure made this possible:
+<div>
 <code>
 def findBorder(dimension):
   '''
@@ -181,7 +182,7 @@ def printMaze(maze):
   for row in maze:
     print("".join(symbols.get(cell, "?") for cell in row))
 </code>
-
+</div>
 
 ### Generate Maze Solutions Greedily
 
