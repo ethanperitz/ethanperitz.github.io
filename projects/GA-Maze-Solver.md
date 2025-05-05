@@ -32,8 +32,9 @@ This was a challenging and really cool project from start to finish.  This is si
 
 ### Make the Maze
 Making the maze was a fun challenge.  Essentially, the steps I followed were to generate an nxn array of 0's, randomly select two spots along the border to represent the start and goal, find a possible pathway from start to goal, build walls around the possible pathway, then build out more dead ends.  The following function structure made this possible:
-<div>
-<code>
+
+
+<code>python</code>
 def findBorder(dimension):
   '''
   Finds random locations along the border of the maze for start and goal
@@ -44,7 +45,11 @@ def findBorder(dimension):
   else:
     index2 = random.choice([0, dimension - 1])
   return index1, index2
-</code>
+
+
+
+
+  
 <code>
 def differentStartGoal(start_index_1, start_index_2, goal_index_1, goal_index_2):
   '''
@@ -150,6 +155,7 @@ def add_branches(maze, path, num_branches=10, max_branch_length=4):
                 break  # no directions left to expand
     return maze
 </code>
+                  
 <code>
 def buildMaze(dimension=10):
   '''
@@ -172,6 +178,7 @@ def buildMaze(dimension=10):
       maze = add_branches(maze, solution, num_branches=6, max_branch_length= 4)
       return maze, (start_index_1, start_index_2), (goal_index_1, goal_index_2)
 </code>
+
 <code>
 def printMaze(maze):
   '''
@@ -181,8 +188,6 @@ def printMaze(maze):
   symbols = {1: "█", 0: " ", "S": "S", "G": "G"}
   for row in maze:
     print("".join(symbols.get(cell, "?") for cell in row))
-</code>
-</div>
 
 ### Generate Maze Solutions Greedily
 
