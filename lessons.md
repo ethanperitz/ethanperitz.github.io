@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lessons, Syllabus, and Curriculum
+title: Curriculum
 permalink: /lessons/
 ---
 
