@@ -1,7 +1,7 @@
 ---
 layout: post
-title: What Kids (and Teachers) Get Wrong About Project-Based Learning
-date: 2025-05-05
+title: My Favorite Student Projects of 2025
+date: 2025-05-19
 ---
 
 # My Favorite Student Projects of 2025
