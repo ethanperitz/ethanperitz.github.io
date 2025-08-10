@@ -4,9 +4,7 @@ title: Examining Redlining in the U.S. with fivethirtyeight Data
 permalink:  /projects/redlining-538/
 ---
 
-# Examining Redlining in the United States Using Data from fivethirtyeight
-
-This is an expansion on a school project I did in the summer of 2022 about redlining in the United States, a practice used in the early- to mid-20th century that prevented investment in areas that were deemed hazardous or otherwise not suited for financial support. The effects of redlining persist today. All data originally comes from the 2020 United States Census, which was cleaned and made available by fivethirtyeight (see link below).  
+This is an expansion on a school project I did in the summer of 2022 (in pursuit of my MS in Data Science) about redlining in the United States, a practice used in the early- to mid-20th century that prevented investment in areas that were deemed hazardous or otherwise not suited for financial support. The effects of redlining persist today. All data originally comes from the 2020 United States Census, which was cleaned and made available by fivethirtyeight (see link below).  
 
 ## Introduction and Preprocessing
 
