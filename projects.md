@@ -13,3 +13,5 @@ permalink: /projects/
 >[Genetic Algorithm Maze Solver](/projects/GA-Maze-Solver.md)
 
 >[Redlining Analysis with fivethirtyeight Census Data](/projects/redlining-538.md)
+
+>[Exploring Feature Selection + ML Classification Algorithm Pairs](projects/machine-learning-explore.md)
