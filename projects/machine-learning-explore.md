@@ -158,7 +158,11 @@ MCC = {round(metrics.matthews_corrcoef(y_test, y_pred), 4)}')
 ```
 
 Notice how evaluation metrics are built directly into the coding structure - an extremely important inclusion.  Below is the output from this example:
-
+<p align="center">
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/four-histograms-racial-breakdown.png" alt="Proportions for Each Racial Group by Zone" width="750" />
+</div>
+</p>
 
 
 ## Summary
