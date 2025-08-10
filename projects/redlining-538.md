@@ -53,7 +53,7 @@ An important figure in this work is Diversity Index, which is the probability of
 
 DI = 1-P(Same Race) = 1-P(2 White ∪ 2 Black ∪ 2 Hispanic ∪ 2 Asian ∪ 2 Other)
 
-Then, I will classify the diversity index of each zone as being “more diverse” or “less diverse” than the overall United States Population, which, as of 2020, is 61.1%. This will constitute my categorical variable for this part of the assignment.
+Then, I will classify the diversity index of each zone as being “more diverse” or “less diverse” than the overall United States Population, which, as of 2020, is 61.1%.
 
 So, to analyze the diversity index for each zone, I created two new variables: Diversity Index [numeric, quantitative continuous] and More/Less Diverse [character, nominal categorical].
 
