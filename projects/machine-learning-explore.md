@@ -178,6 +178,8 @@ The best performer was a Naive Bayes classifier that utilized a simple Differenc
 
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="/assets/img/ml-naive-bayes-evaluator.png" alt="Naive Bayes with Pearson's R" width="750" />
+  <img src="/assets/img/ml-naive-bayes-means-evaluation.png" alt="Naive Bayes with Difference in Means" width="750" />
 </div>
 </p>
+
+Students in ML classes should expect to practice with these algorithms often, both in implementation and in explanation.  Over time, you start to learn how algorithms behave in certain circumstances and how to create effective ensemble-based algorithms and iterate on past results.  Happy Machine Learning!
