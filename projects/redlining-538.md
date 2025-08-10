@@ -27,3 +27,24 @@ Step 3c: Follow the prompts, choosing to delimit the data by comma.
 
 Step 4: Save the csv file locally and copy the file path for importing into RStudio. The code for importing into RStudio is as follows, with the column classes explicitly laid out. Note that the file path given is local to my computer, and it will need to be updated when saved in a different location.
 
+```r
+options(scipen = 7)
+par(mfrow=c(1,1), mar=c(5.1, 4.1, 4.1, 2.1),oma=c(0,0,0,0))
+
+redlining <- read.csv([FILE PATH])
+colClasses <- c("character", "character", 
+                "integer", "integer", "integer", "integer", "integer", "integer", 
+                "numeric", "numeric", "numeric", "numeric", "numeric",
+                "numeric", "numeric", "numeric", "numeric", "numeric",
+                "integer", "integer", "integer", "integer", "integer",
+                "numeric", "numeric", "numeric", "numeric", "numeric")
+```
+
+This dataset includes some sociological terms that may be unfamiliar.  Those include: 
+
+Diversity Index: The probability of randomly selecting two people of different races from a given area. Values closer to 1 indicate a more diverse area.
+
+HOLC Zones: Geographic areas described by the Home Owners’ Loan Corporation based on an early census of the United States. Each zone was given a “grade” of A: “best” (green), B: “Still Desirable” (blue), C: “Definitely Declining” (yellow), D: “Hazardous” (red).
+
+Location Quotient: A measure of over- or under-representation in a given area for a given racial/ethnic group. Values larger than 1 indicate that the racial group is over-represented in that area.
+
