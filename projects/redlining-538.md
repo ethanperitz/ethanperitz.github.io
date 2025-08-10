@@ -122,7 +122,7 @@ For this analysis, I wanted to examine and compare histograms of the percentages
 
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="/assets/img/diversity-analysis-of-holc-zones.png" alt="Proportions for Each Racial Group by Zone" width="750" />
+  <img src="/assets/img/four-histograms-racial-breakdown.png" alt="Proportions for Each Racial Group by Zone" width="750" />
 </div>
 </p>
 
