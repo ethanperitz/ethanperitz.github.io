@@ -121,3 +121,9 @@ Far more HOLC zones in the dataset are less diverse than the total US diversity 
 
 For this analysis, I wanted to examine and compare histograms of the percentages of racial groups per zone. I will exclude “Other” to focus more on those who selected one of the most common racial groups in the census. Each zone in the dataset has a measurement for people identifying as White, Black, Hispanic, and Asian, which is calculated as both a count and as a percentage.
 
+<p align="center">
+<div style="flex: 0 0 auto;">
+  <img src="assets/img/diversity-analysis-of-holc-zones.png" alt="Proportions for Each Racial Group by Zone" width="750" />
+</div>
+</p>
+
