@@ -109,9 +109,9 @@ Now, we have a new binary variable illustrating the Diversity Index of each zone
 
 A barplot of these Diversity Indices is shown below, giving a preliminary look at whether it is common for a zone in the U.S. to have a lot of racial diversity.  
 
-
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="/assets/img/GA-sales-plots.png" alt="GA Traveling Salesperson Plot" width="750" />
+  <img src="assets/img/diversity-analysis-of-holc-zones.png" alt="Diversity Analysis of HOLC Zones" width="750" />
 </div>
 </p>
+
