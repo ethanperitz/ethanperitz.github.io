@@ -158,12 +158,12 @@ MCC = {round(metrics.matthews_corrcoef(y_test, y_pred), 4)}')
 ```
 
 Notice how evaluation metrics are built directly into the coding structure - an extremely important inclusion.  Below is the output from this example:
+
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="/assets/img/four-histograms-racial-breakdown.png" alt="Proportions for Each Racial Group by Zone" width="750" />
+  <img src="/assets/img/ml-naive-bayes-evaluator.png" alt="Naive Bayes with Pearson's R" width="750" />
 </div>
 </p>
-
 
 ## Summary
 These classification procedures had mixed results. In general, models were better at correctly predicting when people would not develop arthritis than they were at predicting when people would develop arthritis. A few models, though, performed well for both.
@@ -174,3 +174,10 @@ I also learned that Naïve Bayes appears to be quite robust even when the indepe
 
 ## Best Feature Selection / Classifier Pair
 
+The best performer was a Naive Bayes classifier that utilized a simple Difference in Means feature selection algorithm.  The evaluation is shown below:
+
+<p align="center">
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/ml-naive-bayes-evaluator.png" alt="Naive Bayes with Pearson's R" width="750" />
+</div>
+</p>
