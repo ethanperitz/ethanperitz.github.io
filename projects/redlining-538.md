@@ -115,3 +115,9 @@ A barplot of these Diversity Indices is shown below, giving a preliminary look a
 </div>
 </p>
 
+Far more HOLC zones in the dataset are less diverse than the total US diversity index, which indicates that while the country overall is quite diverse, individual areas remain segregated. We hear this anecdotally quite often, as racial divides are often the basis for redistricting (and gerrymandering) of electoral maps. Still, the number of zones that are considered more diverse is close to 30%, which is certainly large enough to be meaningful, and it would be interesting to examine the trend of this percentage from census to census, a task that is beyond the scope of this analysis.
+
+## Analyzing Zones by Percentage of Racial Groups
+
+For this analysis, I wanted to examine and compare histograms of the percentages of racial groups per zone. I will exclude “Other” to focus more on those who selected one of the most common racial groups in the census. Each zone in the dataset has a measurement for people identifying as White, Black, Hispanic, and Asian, which is calculated as both a count and as a percentage.
+
