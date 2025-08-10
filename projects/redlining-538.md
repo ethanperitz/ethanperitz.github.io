@@ -111,7 +111,7 @@ A barplot of these Diversity Indices is shown below, giving a preliminary look a
 
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="assets/img/diversity-analysis-of-holc-zones.png" alt="Diversity Analysis of HOLC Zones" width="750" />
+  <img src="/assets/img/diversity-analysis-of-holc-zones.png" alt="Diversity Analysis of HOLC Zones" width="750" />
 </div>
 </p>
 
@@ -123,7 +123,70 @@ For this analysis, I wanted to examine and compare histograms of the percentages
 
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src="assets/img/diversity-analysis-of-holc-zones.png" alt="Proportions for Each Racial Group by Zone" width="750" />
+  <img src="/assets/img/diversity-analysis-of-holc-zones.png" alt="Proportions for Each Racial Group by Zone" width="750" />
 </div>
 </p>
+
+There are two main takeaways from these histograms. First, there is a high proportion of zones in the country that are overwhelmingly white, and there are very few zones that are overwhelmingly any other race, which indicates that many zones remain highly segregated. Second, the heavy right skew of histograms 2-4 shows that the many segregated zones are likely dominantly White. So if you do not identify as White and you live in one of those zones, it is likely that your schoolmates, school teachers, co-workers, and neighborhoods will all be White, which is a problem of representation.
+
+Further, it seems that White people have greater choice in the United States if they want to live in racially segregated areas, which may perpetuate harmful trends of exclusion and unequal opportunities. We often hear about people moving so that their children can have access to better schools, which can be coded language for dominantly White areas.
+
+## Location Quotient by Race
+
+The dataset classifies each zone with a grade of A, B, C, or D. According to the documentation, this grade signifies the desirability of the zone based on the Home Owners’ Loan Corporation’s metrics, with A: “best” (green). B: “Still Desirable” (blue). C: “Definitely Declining” (yellow). D: “Hazardous” (red). For this analysis, I wanted to see how the percentage of racial groups changes by HOLC grade. A helpful metric for this is the Location Quotient, a factor that describes the over- or under-representation of a racial group in a given zone. This dataset contains Location Quotient data for each zone and for each racial group, with values smaller than 1 signifying under-representation of the racial group within the zone and values larger than 1 signifying over-representation.
+
+I will make plots for each grade based on the subset of the original dataset containing only that grade. For example, I will make a subset of each zone classified with a grade of A. Then, I will plot the average Location Quotient for each racial group in a side-by-side bar graph and compare the plots.
+
+```r
+####HOLC Grade of A####
+subsetA <- subset(redlining, redlining$holc_grade == "A")
+avg_lq_white <- mean(subsetA$lq_white)
+avg_lq_black <- mean(subsetA$lq_black)
+avg_lq_hisp <- mean(subsetA$lq_hisp)
+avg_lq_asian <- mean(subsetA$lq_asian)
+avg_lq_other <- mean(subsetA$lq_other)
+
+avg_lq_A <- c(avg_lq_white, avg_lq_black, avg_lq_hisp, avg_lq_asian, avg_lq_other)
+names(avg_lq_A) <- c("White", "Black", "Hispanic", "Asian", "Other")
+####
+####HOLC Grade of B####
+subsetB <- subset(redlining, redlining$holc_grade == "B")
+avg_lq_white <- mean(subsetB$lq_white)
+avg_lq_black <- mean(subsetB$lq_black)
+avg_lq_hisp <- mean(subsetB$lq_hisp)
+avg_lq_asian <- mean(subsetB$lq_asian)
+avg_lq_other <- mean(subsetB$lq_other)
+
+avg_lq_B <- c(avg_lq_white, avg_lq_black, avg_lq_hisp, avg_lq_asian, avg_lq_other)
+names(avg_lq_B) <- c("White", "Black", "Hispanic", "Asian", "Other")
+####
+####HOLC Grade of C####
+subsetC <- subset(redlining, redlining$holc_grade == "C")
+avg_lq_white <- mean(subsetC$lq_white)
+avg_lq_black <- mean(subsetC$lq_black)
+avg_lq_hisp <- mean(subsetC$lq_hisp)
+avg_lq_asian <- mean(subsetC$lq_asian)
+avg_lq_other <- mean(subsetC$lq_other)
+
+avg_lq_C <- c(avg_lq_white, avg_lq_black, avg_lq_hisp, avg_lq_asian, avg_lq_other)
+names(avg_lq_C) <- c("White", "Black", "Hispanic", "Asian", "Other")
+####
+####HOLC Grade of D####
+subsetD <- subset(redlining, redlining$holc_grade == "D")
+avg_lq_white <- mean(subsetD$lq_white)
+avg_lq_black <- mean(subsetD$lq_black)
+avg_lq_hisp <- mean(subsetD$lq_hisp)
+avg_lq_asian <- mean(subsetD$lq_asian)
+avg_lq_other <- mean(subsetD$lq_other)
+
+avg_lq_D <- c(avg_lq_white, avg_lq_black, avg_lq_hisp, avg_lq_asian, avg_lq_other)
+names(avg_lq_D) <- c("White", "Black", "Hispanic", "Asian", "Other")
+####
+
+#combine into matrix
+avg_lq_matrix <- cbind(avg_lq_A, avg_lq_B, avg_lq_C, avg_lq_D)
+rownames(avg_lq_matrix) <- names(avg_lq_A)
+colnames(avg_lq_matrix) <- c("A", "B", "C", "D")
+```
+
 
