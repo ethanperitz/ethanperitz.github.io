@@ -48,7 +48,7 @@ df['havarth3'] = np.where(df['havarth3'] == 1, 1, 0)
 df.head()
 ```
 
-###Train and Test Data Definitions
+### Train and Test Data Definitions
 ```python
 from sklearn.model_selection import train_test_split
 
