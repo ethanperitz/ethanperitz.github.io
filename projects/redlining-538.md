@@ -189,4 +189,16 @@ rownames(avg_lq_matrix) <- names(avg_lq_A)
 colnames(avg_lq_matrix) <- c("A", "B", "C", "D")
 ```
 
+<p align="center">
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/loc-quotient-by-race.png" alt="Location Quotient by Race" width="750" />
+</div>
+</p>
+
+This plot is a stark illustration of the effects of redlining in the United States. To summarize, if you are White, you are much more likely to be overrepresented in a zone with grade A. If you are Black or Hispanic, you are much more likely to be overrepresented in a zone with grade D. The process of redlining in the early- to mid-20th century essentially created neighborhoods that were permissibly segregated, with nonwhite people forced out of homes and denied access to homes within certain geographic areas (which were demarcated on city maps using actual red lines, hence the name). We see the effects of this process today. The neighborhoods that received lots of funding and attention in their development in postwar US cities became the zones graded A in the most recent census. Since nonwhite people were denied access to these areas, we see a large overrepresentation of White people in these areas, which contributes to racial inequity and unequal access to resources.
+
+It is important to remember that the HOLC grade of D signifies “Hazardous” and not just “Undesirable.” This dataset reveals that, not only are Black and Hispanic people more likely to be shut out of desirable communities, they are also more likely to live in hazardous areas, which likely contributes to other poor outcomes in physical health, mental health, education, social mobility, and many others.
+
+There is much more analysis that could be done with these data.  I am grateful that fivethirtyeight makes this data so readily accessible for data projects, and I look forward to continuing with it in the future. 
+
 
