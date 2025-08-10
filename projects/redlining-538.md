@@ -48,3 +48,70 @@ HOLC Zones: Geographic areas described by the Home Owners’ Loan Corporation ba
 
 Location Quotient: A measure of over- or under-representation in a given area for a given racial/ethnic group. Values larger than 1 indicate that the racial group is over-represented in that area.
 
+## Analyzing Zones with High and Low Diversity
+
+An important figure in this work is Diversity Index, which is the probability of randomly selecting two people of different races from the given area. In the Redlining dataset, the population is broken into the following racial categories: White, Black, Hispanic, Asian, and Other. I will calculate my own Diversity Index for each zone using the formula:
+
+DI = 1-P(Same Race) = 1-P(2 White ∪ 2 Black ∪ 2 Hispanic ∪ 2 Asian ∪ 2 Other)
+
+Then, I will classify the diversity index of each zone as being “more diverse” or “less diverse” than the overall United States Population, which, as of 2020, is 61.1%. This will constitute my categorical variable for this part of the assignment.
+
+So, to analyze the diversity index for each zone, I created two new variables: Diversity Index [numeric, quantitative continuous] and More/Less Diverse [character, nominal categorical].
+
+The code excerpt below shows the process I followed in R to label each zone as "more diverse" or "less diverse" than the overall U.S. population according to the Census. 
+
+```r
+diversity_indices <- c() #empty vector to store DI
+more_or_less_diverse <- c() #empty vector to store more/less DI than 61.1
+
+for (x in 1:length(redlining$total_pop)) {
+  #probability of selecting 2 white people in a row
+  P2W <- (redlining$white_pop[x] * (redlining$white_pop[x] - 1))/
+    (redlining$total_pop[x] * (redlining$total_pop[x] - 1))
+  
+  #probability of selecting 2 black people in a row
+  P2B <- (redlining$black_pop[x] * (redlining$black_pop[x] - 1))/
+    (redlining$total_pop[x] * (redlining$total_pop[x] - 1))
+  
+  #probability of selecting 2 hispanic people in a row
+  P2H <- (redlining$hisp_pop[x] * (redlining$hisp_pop[x] - 1))/
+    (redlining$total_pop[x] * (redlining$total_pop[x] - 1))
+  
+  #probability of selecting 2 asian people in a row
+  P2A <- (redlining$asian_pop[x] * (redlining$asian_pop[x] - 1))/
+    (redlining$total_pop[x] * (redlining$total_pop[x] - 1))
+  
+  #probability of selecting 2 other people in a row
+  P2O <- (redlining$other_pop[x] * (redlining$other_pop[x] - 1))/
+    (redlining$total_pop[x] * (redlining$total_pop[x] - 1))
+  
+  #sum these probabilities to find the probability of selecting
+  #two people of the same racial classification in a row
+  prob_same_race <- P2W + P2B + P2H + P2A + P2O
+  
+  #diversity index is the complement
+  di <- 1 - prob_same_race
+  
+  #store in diversity indices vector
+  diversity_indices[x] <- di
+  
+  #store in less/more vector
+  if (di < 0.611) {
+    more_or_less_diverse[x] <- "less"
+  }
+  else {
+    more_or_less_diverse[x] <- "more"
+  }
+}
+```
+
+Now, we have a new binary variable illustrating the Diversity Index of each zone, which is named more_or_less_diverse
+
+A barplot of these Diversity Indices is shown below, giving a preliminary look at whether it is common for a zone in the U.S. to have a lot of racial diversity.  
+
+
+<p align="center">
+<div style="flex: 0 0 auto;">
+  <img src="/assets/img/GA-sales-plots.png" alt="GA Traveling Salesperson Plot" width="750" />
+</div>
+</p>
