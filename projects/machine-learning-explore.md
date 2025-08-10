@@ -92,7 +92,7 @@ largest differences, but I realized that the group of attributes was identical t
 
 ## Modeling with ML Algorithms
 
-For each of the 5 featre selection algorithms, I enmployed the following classifier methods:
+For each of the 5 feature selection algorithms, I enmployed the following classifier methods:
 
 ### Classifier #1: Naïve Bayes
 Naïve Bayes assumes independence of features and finds the highest probability of each value of the class attribute under the condition of each distinct value in each tuple. Naïve Bayes tends to work well with categorical attributes, and since there are some numerical attributes in the dataset, I used the Gaussian Naïve Bayes provided by scikit-learn.
