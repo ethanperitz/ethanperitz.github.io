@@ -1,0 +1,15 @@
+---
+layout: post
+title: What Is a Data Science Problem
+date: 2025-11-06
+---
+
+# What Is a Data Science Problem?
+## (And What Makes It Good?)
+
+I recently co-led a session at my district's professional development event that gathered math teachers from all levels and presented them with "good" math problems.  We defined the problems as good because we enjoyed them, they made us think, they were challenging, and they were illuminating.  
+
+Many of the problems we selected came from the BU-sponsored [PROMYS for Teachers program](https://promys.org/programs/for-teachers/).  This program, an extension of the highly regarded PROMYS program for high school students, introduces teachers to problems in Number Theory using an exploratory, inquiry-based approach.  I highly recommend it to any math teachers looking to enrich their mathematical comprehension, appreciation, and depth of knowledge.  
+
+The feedback I got from this session was positive, mainly because of the problems themselves.  They were cool, different, and interesting to puzzle over.  They were satisfying without being exclusionary.  There were often many, many ways to approach and solve each one.  For example, my wonderful colleague Sarah Deitch, who co-led the session with me, brought a problem set that built the explicit formula for the Fibonacci Sequence that absolutely knocked my socks off.  It had all the narrative intrigue of a good movie - unexpected encounters with friends thought long-lost (read:  quadratics), seemingly insurmountable obstacles (read:  writing the first sixteen terms of a three-times recursive sequence), epic conflicts with bitter enemies (read:  re-deriving the formula for a finite geometric sequence).  It got me thinking:  What problems in data science 
+
