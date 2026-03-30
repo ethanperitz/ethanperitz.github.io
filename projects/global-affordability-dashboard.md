@@ -15,6 +15,6 @@ This simple app uses scraped data to allow users to compare and visualize afford
 
 <p align="center">
 <div style="flex: 0 0 auto;">
-  <img src = "/assets/img/afford-dashboard-screenshot.png" alt = "Screenshot of Affordability Dashboard" width = "750 />
+  <img src = "/assets/img/afford-dashboard-screenshot.png" alt = "Screenshot of Affordability Dashboard" width = "750" />
 </div>
 </p>
