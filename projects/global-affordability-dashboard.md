@@ -4,8 +4,8 @@ title: Global Housing Affordability Dashboard
 permalink:  /projects/global-affordability-dashboard/
 ---
 
-# Comparing Affordability of Worldwide Cities
-## A Streamlit App with Global Affordability Data
+### Comparing Affordability of Worldwide Cities Using a Streamlit App
+
 
 This simple app uses scraped data to allow users to compare and visualize affordability metrics across cities and countries.  
 
