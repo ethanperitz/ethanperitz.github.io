@@ -1,3 +1,9 @@
+---
+layout: page
+title: Global Housing Affordability Dashboard
+permalink:  /projects/global-affordability-dashboard.md/
+---
+
 # Comparing Affordability of Worldwide Cities
 ## A Streamlit App with Global Affordability Data
 
