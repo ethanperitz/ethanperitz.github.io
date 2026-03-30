@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Global Housing Affordability Dashboard
-permalink:  /projects/global-affordability-dashboard/
+permalink:  /projects/global-affordability-dashboard.md/
 ---
 
 # Comparing Affordability of Worldwide Cities
