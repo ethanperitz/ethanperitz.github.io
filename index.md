@@ -17,6 +17,7 @@ Subscribe to [Parrot's Puzzles](https://patreon.com/ParrotsPuzzles?utm_medium=un
 - Weekly themed puzzle packets sent to your inbox
 - Subscriber benefits
 - Join a community of curious, creative people
+- [Learn more](puzzles.md)
 
 ---
 
