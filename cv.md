@@ -17,7 +17,7 @@ permalink: /cv/
 <h2>
 Summary
 </h2>
-Passionate about puzzles, education, data science, and helping others. I am looking for opportunities to be creative and inspiring. I value finding joy in doing important work. Join my community of puzzle solvers by subscribing to [Parrot's Puzzles on Patreon](https://patreon.com/ParrotsPuzzles?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)!
+Passionate about puzzles, education, data science, and helping others. I am looking for opportunities to be creative and inspiring. I value finding joy in doing important work. Join my community of puzzle solvers by subscribing to <a href = "https://patreon.com/ParrotsPuzzles?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">Parrot's Puzzles on Patreon</a>!
 
 </div>
 
