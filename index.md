@@ -5,10 +5,11 @@ title: Welcome
 
 # Data Science Should Be for Everyone
 
-I’m a data scientist and educator. This site is a place for me to share:
-- 🛠️ Projects I've built
-- 📓 Posts and ideas about data science education
-- 📊 Data science lesson plans, project ideas for students, and more
+I’m a data scientist, educator, and puzzle creator. This site is a place for me to share:
+- Projects I've built
+- Posts and ideas about data science education
+- Data science lesson plans, project ideas for students, and more
+- More information about puzzle projects
 
 ---
 ## Parrot's Puzzles
