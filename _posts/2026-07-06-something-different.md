@@ -36,3 +36,5 @@ And last, though far less interesting, comes the political climate.  Identifying
 ## So What Comes Next?
 
 As I write this, the following destinations are ahead of me:  Toulouse --> The Azores --> Lisbon/Porto --> Estapona --> Trieste --> Rabat --> Marrakesh --> Dakar --> Cape Town --> Ile de Reunion.  Still unplanned are my sojourns to Kuala Lampur, Australia, and New Zealand.  I'll be diving, hiking, speaking French.  I'll be uncomfortable and constantly saying "Yes" (or "Oui") to whatever experiences come my way.  I hope you'll join me by following this blog.  I hope you'll support me by subscribing to [Parrot's Puzzles](https://patreon.com/ParrotsPuzzles?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink) (just $5 per month!).  And I hope that my leap of faith inspires somebody - anybody - to do the same.  À toute à l'heure! 
+
+{% include buttondown-subscribe.html %}
