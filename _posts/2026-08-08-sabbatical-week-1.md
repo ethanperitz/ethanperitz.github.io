@@ -30,10 +30,10 @@ So, do the thing.  Be gracious and open when people around you do the thing.  Fr
 
 Next week, I will hike the Pyrenees to view the eclipse with Jessica.  And, perhaps a million more things.   
 
-![Toulouse Rue](assets/img/toulouse/20260804_135509.jpg)
-![Basilica](assets/img/toulouse/20260804_154020-EDIT.jpg)
-![Rue sur Garonne](assets/img/toulouse/20260804_164210-EDIT.jpg)
-![Quai](assets/img/toulouse/20260806_130350.jpg)
+![Toulouse Rue](/assets/img/toulouse/20260804_135509.jpg)
+![Basilica](/assets/img/toulouse/20260804_154020-EDIT.jpg)
+![Rue sur Garonne](/assets/img/toulouse/20260804_164210-EDIT.jpg)
+![Quai](/assets/img/toulouse/20260806_130350.jpg)
 
 Until next time,
 
