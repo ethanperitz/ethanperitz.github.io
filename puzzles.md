@@ -24,4 +24,16 @@ permalink: /puzzles/
 <h2>
 <a href = "https://patreon.com/ParrotsPuzzles?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">Subscribe here!</a>
 </h2> 
+
+<h2>
+  Request a Customized Puzzle for your Next Event
+</h2>
+
+<p>
+  You can now request puzzles of all types to add a personalized touch to any occasion.  Enjoy custom scavenger hunts, bingo cards, escape rooms, crosswords, and much, much more!
+</p>
+
+<h2>
+<a href = "https://ko-fi.com/parrotspuzzles/commissions">Request Your Puzzle Here!</a>
+</h2> 
 </div>
