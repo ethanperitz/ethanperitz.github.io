@@ -6,6 +6,8 @@ permalink: /projects/
 
 ## Projects
 
+>[Evaluation of Cooling Model with Error Analysis, Correction, and Description](/projects/Cooling_Model_Evaluation_Sample.md)
+
 >[Dashboard for Exploring Global Housing Affordability](/projects/global-affordability-dashboard.md)
 
 >[Genetic Algorithm for 0-1 Knapsack Problem](/projects/GA-knapsack.md)
