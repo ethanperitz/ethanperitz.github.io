@@ -3,7 +3,7 @@
 
 **Prepared by Ethan Peritz**
 
-This exercise was created independently for an application portfolio. The initial solution is an intentionally constructed illustration, not an actual AI-generated response. No proprietary evaluation material is included.
+This exercise was created independently for an application portfolio. The initial solution is an intentionally constructed illustration, not an actual AI-generated response. No proprietary evaluation material is included.  The purpose of this project is to illustrate realistic AI evaluation techniques for mathematic and scientific problem-solving. The error was intentionally devised to be one that would plausibly be committed by an AI agent. 
 
 ## 1. Problem Statement
 
@@ -21,7 +21,7 @@ Here:
 - $T_0>T_{\text{ambient}}$ is the known initial temperature.
 - $k>0$ is the unknown cooling constant, in inverse minutes.
 
-Observed temperatures contain additive measurement noise:
+**Important:**  Observed temperatures contain additive measurement noise, adding a stochastic component to an otherwise mathematical modeling problem. 
 
 $$
 y_i=T(t_i)+\varepsilon_i.
@@ -54,7 +54,7 @@ Raise `ValueError` for invalid inputs. Use Python with NumPy and SciPy.
 
 **Boundary behavior:** Valid measurements do not always identify a finite, strictly positive best-fit rate. Report a fitting failure if a positive rate cannot be resolved, rather than presenting a boundary estimate as a successful cooling fit.
 
-## 2. Illustrative Initial Solution
+## 2. Initial Solution
 
 > **Illustrative only:** This intentionally flawed response was constructed for the review sample. It is not an actual AI-generated response.
 
@@ -145,13 +145,13 @@ The initial solution predicts arrival more than three minutes too early.
 
 ### Review Finding
 
-**Defect location:** mathematical method in the submitted solution.
+**Defect location:** Mathematical method in the submitted solution.
 
-**Defect:** the submission minimizes squared residuals in log-transformed temperature excess, while the specification requires squared residuals in temperature.
+**Defect:** The submission minimizes squared residuals in log-transformed temperature excess, while the specification requires squared residuals in temperature.
 
-**Required correction:** fit the original exponential model directly to the observations.
+**Required correction:** Fit the original exponential model directly to the observations.
 
-This example demonstrates the consequences of that mismatch. It does not imply that the corrected method recovers the true parameter more accurately for every noisy dataset. A transformed regression explicitly posed with a different noise model could be appropriate for a different problem.
+This example demonstrates the consequences of that mismatch. It does not imply that the corrected method recovers the true parameter more accurately for every noisy dataset, particularly one that violates the assumptions of independent variance. A transformed regression explicitly posed with a different noise model could be appropriate for a different problem.
 
 ## 4. Corrected Approach: Nonlinear Temperature Residuals
 
@@ -169,7 +169,7 @@ Individual measurement errors are unknown; they cannot simply be subtracted. Ins
 
 - With independent, zero-mean errors of equal variance, each observation receives equal weight.
 - If the errors are also normally distributed, minimizing this objective is maximum-likelihood estimation.
-- Observations near ambient are not amplified by a logarithmic transformation.
+- Observations near ambient are not amplified by a logarithmic transformation, a crucial change from the log-linear model.
 - Observations at or below ambient remain valid data. The model stays above ambient, but noise may place individual measurements below it.
 
 ### Core Python Implementation
@@ -277,7 +277,7 @@ The noisy comparison is a demonstration, not a universal accuracy test. The nois
 
 ### Uncertainty and Further Validation
 
-A fitted parameter is an estimate, not exact recovery of the underlying rate. Inspect residuals for systematic patterns or changing spread; either may indicate that the cooling model or noise assumptions need revision. Multiple starting guesses or inspection of the one-dimensional objective can help assess whether the fitted minimum is stable.
+A fitted parameter is an estimate, not exact recovery of the underlying rate. Inspect residuals for systematic patterns and changing spread (i.e. heteroskedasticity); either may indicate that the cooling model or noise assumptions need revision. Multiple starting guesses or inspection of the one-dimensional objective can help assess whether the fitted minimum is stable.
 
 If observations have known, different measurement standard deviations $\sigma_i$, minimize standardized residuals:
 
