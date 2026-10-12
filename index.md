@@ -3,13 +3,14 @@ layout: home
 title: Welcome
 ---
 
-# Data Science Should Be for Everyone
+# A Teacher Abroad
 
 I’m a data scientist, educator, and puzzle creator. This site is a place for me to share:
 - Projects I've built
 - Posts and ideas about data science education
 - Data science lesson plans, project ideas for students, and more
 - More information about puzzle projects
+- My travel experiences
 
 ---
 ## Parrot's Puzzles
