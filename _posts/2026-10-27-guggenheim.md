@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Three Stories from the Guggenheim
-date: 2026-10-26
+date: 2026-10-27
 ---
 
 *Content Warning:  Artsy-fartsy-ness, potentially bad takes on modern art*
